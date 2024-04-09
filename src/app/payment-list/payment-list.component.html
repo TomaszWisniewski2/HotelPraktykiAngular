@@ -1,0 +1,42 @@
+<style>.payment-list-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .payment-list-container h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .payment-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .payment-link {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+ 
+  </style>
+<div class="payment-list-container" *ngIf="rooms$ | async as rooms">
+    <h2>Payment List</h2>
+    <ul>
+        <li *ngFor="let payment of rooms" class="payment-item">
+            <div>
+                <a (click)="viewPaymentDetail(payment.id)" class="payment-link">
+                    <p><strong>Booking ID:</strong> {{ payment.bookingId }}</p>
+                    <p><strong>Paid:</strong> {{ payment.paid }}</p>
+                    <p><strong>Payment Type:</strong> {{getPayType( payment.paymentType) }}</p>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

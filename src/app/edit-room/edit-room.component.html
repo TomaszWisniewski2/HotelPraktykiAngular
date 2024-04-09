@@ -1,0 +1,120 @@
+<style>.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-control {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.alert.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 8px;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.alert.alert-danger.mt-3 {
+  margin-top: 20px;
+}
+</style>
+<div class="container">
+    <h2>Edit Room</h2>
+    <form [formGroup]="editRoomForm" (ngSubmit)="editRoom(editRoomForm.value)">
+      
+      <div class="form-group">
+        <label for="roomNumber">Room Number:</label>
+        <input type="number" id="roomNumber" class="form-control" formControlName="roomNumber">
+        <div *ngIf="validateControl('roomNumber')" class="alert alert-danger">
+          Room Number is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="roomPrice">Room Price:</label>
+        <input type="number" id="roomPrice" class="form-control" formControlName="roomPrice">
+        <div *ngIf="validateControl('roomPrice')" class="alert alert-danger">
+          Room Price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="roomCapacity">Room Capacity:</label>
+        <input type="number" id="roomCapacity" class="form-control" formControlName="roomCapacity">
+        <div *ngIf="validateControl('roomCapacity')" class="alert alert-danger">
+          Room Capacity is required.
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="roomStatus">Room Status:</label>
+        <!-- <input type="number" id="roomStatus" class="form-control" formControlName="roomStatus"> -->
+        <select id="roomStatus" class="form-control" formControlName="roomStatus">
+          <option value="0">Free</option>
+          <option value="1">Reserved</option>
+          <option value="2">Occupied </option>
+        </select>
+        <div *ngIf="validateControl('roomStatus')" class="alert alert-danger">
+          Room Status is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="roomType">Room Type:</label>
+        <!-- <input type="number" id="roomType" class="form-control" formControlName="roomType"> -->
+        <select id="roomType" class="form-control" formControlName="roomType">
+          <option value="0">Normal</option>
+          <option value="1">Vip</option>
+        </select>
+        <div *ngIf="validateControl('roomType')" class="alert alert-danger">
+          Room Type is required.
+        </div>
+      </div> 
+      <input type="file" id="file" (change)="handleFileInput($event.target)">
+
+      <button type="submit" class="btn btn-primary">Edit Room</button>
+    </form>
+    <div *ngIf="showError" class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </div>
+  

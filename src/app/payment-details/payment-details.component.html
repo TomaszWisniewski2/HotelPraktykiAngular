@@ -1,0 +1,46 @@
+<style>.payment-details-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.payment-details-container h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.payment-details {
+  margin-top: 10px;
+}
+
+.payment-details p {
+  margin-bottom: 5px;
+}
+
+.loading-container {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.loading-container p {
+  margin: 0;
+}
+</style>
+<div class="payment-details-container" *ngIf="payment">
+  <h2>Payment Details</h2>
+  <div class="payment-details">
+      <!-- <p><strong>ID:</strong> {{ payment.id }}</p> -->
+      <p><strong>Room Nr:</strong> {{ payment.bookingId }}</p>
+      <p><strong>Paid:</strong> {{ payment.paid }}</p>
+      <p><strong>Payment Type:</strong> {{ getPayType(payment.paymentType) }}</p>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="!payment">
+  <p>Loading...</p>
+</div>

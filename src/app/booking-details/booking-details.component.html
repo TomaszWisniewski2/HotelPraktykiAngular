@@ -1,0 +1,61 @@
+<style>/* Style dla komponentu szczegółów rezerwacji */
+
+  .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+  }
+  
+  p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 5px;
+  }
+  
+  .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger {
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+  }
+  
+  .btn-danger:hover {
+      background-color: #c82333;
+  }
+  
+  .loading {
+      font-size: 16px;
+      color: #666;
+      margin-top: 20px;
+  }
+  </style>
+<div *ngIf="booking">
+  <h2>Room Nr {{ booking.roomNr }}</h2>
+  <p>Price: {{ booking.payment }}</p>
+  <p>From: {{ booking.bookingFrom | date:'short' }}</p>
+  <p>To: {{ booking.bookingTo | date:'short' }}</p>
+</div>
+
+<button (click)="deleteBooking()" class="btn btn-danger">Delete Booking</button>
+
+<div *ngIf="!booking">
+  <p>Loading...</p>
+</div>

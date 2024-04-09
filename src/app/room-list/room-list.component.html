@@ -1,0 +1,81 @@
+<style>.room-list-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .room-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .room-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .room-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .room-details {
+    margin-bottom: 10px;
+  }
+  
+  .room-details h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .room-details p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn:active {
+    background-color: #0056b3;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+
+  }
+  .room-image {
+    width: 200px; /* ustal preferowaną szerokość */
+    height: 150px; /* ustal preferowaną wysokość */
+    object-fit: scale-down; /* aby obrazy były skalowane proporcjonalnie */
+}</style>
+<div *ngIf="rooms$ | async as rooms">
+  <h2>Room List</h2>
+  <ul class="room-list">
+      <li *ngFor="let room of rooms" class="room-item">
+          <div class="room-details">
+              <a (click)="viewRoomDetail(room.id)">
+                  <img src="assets/photos/{{ room.roomPhoto }}" class="room-image">
+                  <h3>Room Number:{{ room.roomNumber }}</h3>
+                  <p>Room Capacity: {{ room.roomCapacity }}</p>
+                  <p>Price: {{ room.roomPrice }}</p>
+              </a>
+          </div>
+          <button (click)="bookingRoomView(room.id)" class="btn btn-primary">Book Room</button>
+      </li>
+  </ul>
+</div>
